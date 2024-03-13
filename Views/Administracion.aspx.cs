@@ -17,5 +17,11 @@ namespace Views
             dgvArticulos.DataSource = controller.ListarTodosLosArticulos();
             dgvArticulos.DataBind();
         }
+
+        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvArticulos.SelectedDataKey.Value.ToString();
+            Response.Redirect("Alta.aspx?id=" + id);
+        }
     }
 }

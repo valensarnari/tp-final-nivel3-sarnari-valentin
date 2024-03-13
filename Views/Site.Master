@@ -73,7 +73,7 @@
         </div>
         <footer>
             <hr class="border border-primary-subtle border-1 opacity-30 mx-auto w-50" />
-            <h6 class="text-center">Página creada por Valentín Sarnari</h6>
+            <h6 class="text-center">© Página creada por Valentín Sarnari</h6>
         </footer>
     </form>
     <script src="Scripts/bootstrap.min.js"></script>

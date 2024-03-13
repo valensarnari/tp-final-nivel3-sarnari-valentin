@@ -52,6 +52,49 @@ namespace Controllers
                 acceso.CerrarConexion();
             }
         }
+        public Articulo FiltrarPorId(string id)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            try
+            {
+                acceso.SetConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, IdMarca, M.Descripcion as Marca, IdCategoria, C.Descripcion as Categoria, ImagenUrl, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and A.Id = @id");
+                acceso.SetParametro("@id", id);
+                acceso.EjecutarLectura();
+
+                if (acceso.Lector.Read())
+                {
+                    Articulo articulo = new Articulo();
+                    articulo.Id = (int)acceso.Lector["Id"];
+                    articulo.Codigo = (string)acceso.Lector["Codigo"];
+                    articulo.Nombre = (string)acceso.Lector["Nombre"];
+                    articulo.Descripcion = (string)acceso.Lector["Descripcion"];
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Id = (int)acceso.Lector["IdMarca"];
+                    articulo.Marca.Descripcion = (string)acceso.Lector["Marca"];
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Id = (int)acceso.Lector["IdCategoria"];
+                    articulo.Categoria.Descripcion = (string)acceso.Lector["Categoria"];
+
+                    if (!(acceso.Lector["ImagenUrl"] is DBNull))
+                        articulo.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
+
+                    articulo.Precio = (Decimal)acceso.Lector["Precio"];
+
+                    return articulo;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                acceso.CerrarConexion();
+            }
+        }
         public void AgregarArticulo(Articulo art)
         {
             AccesoDatos acceso = new AccesoDatos();
