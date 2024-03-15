@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using System.Drawing;
 using Image = System.Drawing.Image;
+using Models;
 
 namespace Controllers
 {
-    public class Helper
+    public static class Helper
     {
         public static Image TransformarImagen(Image originalImage)
         {
@@ -27,6 +28,19 @@ namespace Controllers
                 graphics.DrawImage(originalImage, (squareSize.Width / 2) - (originalImage.Width / 2), (squareSize.Height / 2) - (originalImage.Height / 2), originalImage.Width, originalImage.Height);
             }
             return squareImage;
+        }
+        public static bool SesionActiva(object user)
+        {
+            User activo = user != null ? (User)user : null;
+            if (activo != null && activo.Id != 0)
+                return true;
+            else
+                return false;
+        }
+        public static bool EsAdmin(object user)
+        {
+            User admin = user != null ? (User)user : null;
+            return admin != null ? admin.Admin : false;
         }
     }
 }

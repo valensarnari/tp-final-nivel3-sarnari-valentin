@@ -19,6 +19,9 @@ namespace Views
             {
                 if (!IsPostBack)
                 {
+                    ddlConfirmoEliminar.Items.Add("No eliminar");
+                    ddlConfirmoEliminar.Items.Add("Confirmo eliminar");
+
                     CategoriaController controllerCategoria = new CategoriaController();
                     MarcaController controllerMarca = new MarcaController();
 
@@ -117,6 +120,45 @@ namespace Views
             catch (Exception)
             {
                 Session.Add("error", "Ocurrió un error al intentar modificar el artículo, vuelva a intentar.");
+                Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ddlConfirmoEliminar.SelectedIndex = 0;
+
+                if (ddlConfirmoEliminar.Visible == false)
+                {
+                    ddlConfirmoEliminar.Visible = true;
+                    btnConfirmoEliminar.Visible = true;
+                }
+                else
+                {
+                    ddlConfirmoEliminar.Visible = false;
+                    btnConfirmoEliminar.Visible = false;
+                }
+            }
+            catch (Exception)
+            {
+                Session.Add("error", "Ocurrió un error al activar la Confirmación de Eliminación, vuelva a intentar.");
+                Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        protected void btnConfirmoEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ArticuloController controller = new ArticuloController();
+                controller.EliminarArticulo(int.Parse(txtId.Text));
+                Response.Redirect("Administracion.aspx", false);
+            }
+            catch (Exception)
+            {
+                Session.Add("error", "Ocurrió un error al intentar eliminar el artículo, vuelva a intentar.");
                 Response.Redirect("Error.aspx", false);
             }
         }

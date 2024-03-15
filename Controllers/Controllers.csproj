@@ -52,6 +52,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="MarcaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

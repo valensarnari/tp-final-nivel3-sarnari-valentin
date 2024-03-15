@@ -5,31 +5,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .imagen {
-            height: 100%;
-            width: auto;
+            height: 400px;
+            border: 1px solid #000;
         }
-
-        @supports(object-fit: cover) {
+        /*@supports(object-fit: cover) {
             .imagen {
                 height: 100%;
                 object-fit: cover;
                 object-position: center center;
             }
-        }
+        }*/
     </style>
 
-    <div class="row mx-auto">
-        <div class="m-3 row mx-auto bg-light rounded" style="height: 100px"></div>
-        <div class="row mx-auto m-3">
-            <div style="height: 500px" class="m-3 col-3 bg-light rounded"></div>
-            <div class="m-3 col-8 bg-light rounded">
+    <div class="row my-5 gap-3">
+        <div class="row">
+            <div class="col bg-danger" style="height: 100px"></div>
+        </div>
+        <div class="row gap-3">
+            <div class="col-3 bg-primary" style="height: 500px"></div>
+            <div class="col bg-light">
                 <div class="row row-cols-1 row-cols-md-2 g-4 py-3">
                     <asp:Repeater runat="server" ID="repRepeater">
                         <ItemTemplate>
                             <div class="col">
-                                <div class="card m-3">
+                                <div class="card m-3" style="width:400px">
                                     <div>
-                                        <img src="" class="card-img-top imagen" alt="Imagen del artículo">
+                                        <img src="<%#Eval("ImagenUrl") %>" class="card-img-top imagen" alt="Imagen del artículo">
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title"><%#Eval("Nombre") %></h5>
@@ -44,7 +45,7 @@
                                     </ul>
                                     <div class="card-body">
                                         <asp:Button ID="btnFavorito" runat="server" Text="Agregar a favorito" CssClass="btn btn-outline-primary" />
-                                        <a href="#" class="card-link">Ver detalle</a>
+                                        <a href="#" class="mx-2 card-link">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,6 +55,4 @@
             </div>
         </div>
     </div>
-
-
 </asp:Content>

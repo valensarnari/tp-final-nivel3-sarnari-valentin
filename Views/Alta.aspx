@@ -61,8 +61,12 @@
                 <asp:Button OnClick="btnModificar_Click" ID="btnModificar" runat="server" Text="Modificar artículo" CssClass="btn btn-primary" Visible="false" />
                 <a href="Administracion.aspx" class="btn btn-outline-primary">Volver atrás</a>
             </div>
-            <div class="mt-1">
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar artículo" CssClass="btn btn-danger" />
+            <div class="mt-2">
+                <asp:Button Visible="false" OnClick="btnEliminar_Click" ID="btnEliminar" runat="server" Text="Eliminar artículo" CssClass="btn btn-danger" />
+            </div>
+            <div class="mt-4">
+                <asp:DropDownList Visible="false" Width="30%" ID="ddlConfirmoEliminar" runat="server" CssClass="form-control"></asp:DropDownList>
+                <asp:Button Visible="false" OnClick="btnConfirmoEliminar_Click" ID="btnConfirmoEliminar" runat="server" Text="Confirmo eliminación" CssClass="btn btn-danger mt-1" />
             </div>
         </div>
     </div>

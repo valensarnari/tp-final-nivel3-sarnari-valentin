@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width" initial-scale="1"/>
+    <meta name="viewport" content="width=device-width" initial-scale="1" />
     <title>Catálogo de artículos</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -14,7 +14,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-expand-lg bg-secondary">
+            <nav class="navbar navbar-expand-lg bg-dark">
+                <!-- o bg-secondary -->
                 <div class="container-fluid">
                     <a class="navbar-brand text-white" href="Default.aspx">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-vibrate" viewBox="0 0 16 16">
@@ -31,36 +32,44 @@
                                 <a class="nav-link text-white" href="Default.aspx">Catálogo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Mis favoritos</a>
+                                <a class="nav-link text-white" href="Favoritos.aspx">Mis favoritos</a>
                             </li>
+                            <% if (Controllers.Helper.EsAdmin(Session["user"])) {%>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="Administracion.aspx">Administración</a>
                             </li>
+                            <% } %>
                         </ul>
                         <div class="d-flex">
                             <ul class="nav navbar-nav navbar-right">
+                                <% if (Controllers.Helper.SesionActiva(Session["user"])) {%>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="#">
+                                    <a class="nav-link text-white" href="MiPerfil.aspx">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                         </svg>
                                         Mi perfil</a>
                                 </li>
+                                <% } %>
+                                <% if (!Controllers.Helper.SesionActiva(Session["user"])) {%>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="#">
+                                    <a class="nav-link text-white" href="Login.aspx">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                         </svg>
                                         Login</a>
                                 </li>
+                                <% } %>
+                                <% if (!Controllers.Helper.SesionActiva(Session["user"])) {%>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="#">
+                                    <a class="nav-link text-white" href="Signup.aspx">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
                                             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
                                         </svg>
                                         Sign Up</a>
                                 </li>
+                                <% } %>
                             </ul>
                         </div>
                     </div>
@@ -73,7 +82,7 @@
         </div>
         <footer>
             <hr class="border border-primary-subtle border-1 opacity-30 mx-auto w-50" />
-            <h6 class="text-center">© Página creada por Valentín Sarnari</h6>
+            <h6 class="text-center mb-5">© Página creada por Valentín Sarnari</h6>
         </footer>
     </form>
     <script src="Scripts/bootstrap.min.js"></script>
