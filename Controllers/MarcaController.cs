@@ -39,5 +39,39 @@ namespace Controllers
                 acceso.CerrarConexion();
             }
         }
+        public List<Marca> ListarTodasLasMarcas(bool x)
+        {
+            List<Marca> lista = new List<Marca>();
+            AccesoDatos acceso = new AccesoDatos();
+
+            try
+            {
+                Marca todas = new Marca();
+                todas.Descripcion = "Todas las marcas";
+                lista.Add(todas);
+
+                acceso.SetConsulta("Select Id, Descripcion from MARCAS");
+                acceso.EjecutarLectura();
+
+                while (acceso.Lector.Read())
+                {
+                    Marca aux = new Marca();
+                    aux.Id = (int)acceso.Lector["Id"];
+                    aux.Descripcion = (string)acceso.Lector["Descripcion"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                acceso.CerrarConexion();
+            }
+        }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="ArticuloController.cs" />
     <Compile Include="CategoriaController.cs" />
+    <Compile Include="FavoritoController.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="MarcaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

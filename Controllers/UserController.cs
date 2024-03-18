@@ -45,7 +45,7 @@ namespace Controllers
                 acceso.CerrarConexion();
             }
         }
-        public void Signup(User user)
+        public bool Signup(User user)
         {
             AccesoDatos acceso = new AccesoDatos();
 
@@ -54,7 +54,62 @@ namespace Controllers
                 acceso.SetConsulta("Insert into USERS(email, pass) values(@email, @pass)");
                 acceso.SetParametro("@email", user.Email);
                 acceso.SetParametro("@pass", user.Pass);
+
+                if (EstaRegistrado(user))
+                {
+                    acceso.EjecutarConsulta();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                acceso.CerrarConexion();
+            }
+        }
+        public void Actualizar(User user)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            try
+            {
+                acceso.SetConsulta("Update USERS set nombre = @nom, apellido = @ape, urlImagenPerfil = @url where Id = @id");
+                acceso.SetParametro("@nom", user.Nombre);
+                acceso.SetParametro("@ape", user.Apellido);
+                acceso.SetParametro("@url", user.UrlImagenPerfil);
+                acceso.SetParametro("@id", user.Id);
                 acceso.EjecutarConsulta();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                acceso.CerrarConexion();
+            }
+        }
+        public bool EstaRegistrado(User user)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            try
+            {
+                acceso.SetConsulta("Select Id, email, pass, nombre, apellido, urlImagenPerfil, admin from USERS where email = @email");
+                acceso.SetParametro("@email", user.Email);
+                acceso.EjecutarLectura();
+
+                while (acceso.Lector.Read())
+                {
+                    return false;
+                }
+
+                return true;
             }
             catch (Exception ex)
             {

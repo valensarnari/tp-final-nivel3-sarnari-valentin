@@ -153,8 +153,12 @@ namespace Views
             try
             {
                 ArticuloController controller = new ArticuloController();
-                controller.EliminarArticulo(int.Parse(txtId.Text));
-                Response.Redirect("Administracion.aspx", false);
+
+                if (ddlConfirmoEliminar.SelectedIndex != 0)
+                {
+                    controller.EliminarArticulo(int.Parse(txtId.Text));
+                    Response.Redirect("Administracion.aspx", false);
+                }
             }
             catch (Exception)
             {

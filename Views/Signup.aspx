@@ -20,7 +20,7 @@
                         <div class="col"></div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <asp:Button ID="btnLogin" CssClass="btn btn-primary" runat="server" Text="Registrar" />
+                                <asp:Button ID="btnSignup" OnClick="btnSignup_Click" CssClass="btn btn-primary" runat="server" Text="Registrar" />
                                 <a href="Default.aspx" class="btn btn-outline-primary">Volver atrás</a>
                             </div>
                             <div class="mb-3">
