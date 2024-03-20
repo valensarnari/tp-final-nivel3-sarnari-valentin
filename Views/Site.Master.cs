@@ -47,6 +47,16 @@ namespace Views
                     Response.Redirect("Error.aspx", false);
                 }
             }
+
+            // establezco que un usuario debe cerrar sesion para login o signup
+            if (Page is Login || Page is Signup)
+            {
+                if (Helper.SesionActiva(Session["user"]))
+                {
+                    Session.Add("error", "Para acceder a esta página tenés que cerrar sesión.");
+                    Response.Redirect("Error.aspx", false);
+                }
+            }
         }
     }
 }

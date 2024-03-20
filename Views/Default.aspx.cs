@@ -11,6 +11,8 @@ namespace Views
 {
     public partial class Default : System.Web.UI.Page
     {
+        public List<Articulo> ListaArticulos { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -19,12 +21,10 @@ namespace Views
                 CategoriaController categoriaController = new CategoriaController();
                 ArticuloController articuloController = new ArticuloController();
 
+                ListaArticulos = articuloController.ListarTodosLosArticulos();
+
                 if (!IsPostBack)
                 {
-                    repRepeater.DataSource = articuloController.ListarTodosLosArticulos();
-                    repRepeater.DataBind();
-
-                    
                     ddlCategoria.DataSource = categoriaController.ListarTodasLasCategorias(true);
                     ddlCategoria.DataValueField = "Id";
                     ddlCategoria.DataTextField = "Descripcion";
@@ -55,8 +55,7 @@ namespace Views
             {
                 ArticuloController controller = new ArticuloController();
 
-                repRepeater.DataSource = controller.FiltrarPorNombre(txtFiltroBasico.Text);
-                repRepeater.DataBind();
+                ListaArticulos = controller.FiltrarPorNombre(txtFiltroBasico.Text);
             }
             catch (Exception)
             {
@@ -72,8 +71,7 @@ namespace Views
                 ArticuloController controller = new ArticuloController();
 
                 txtFiltroBasico.Text = "";
-                repRepeater.DataSource = controller.ListarTodosLosArticulos();
-                repRepeater.DataBind();
+                ListaArticulos = controller.ListarTodosLosArticulos();
 
                 ddlCategoria.SelectedIndex = 0;
                 ddlMarca.SelectedIndex = 0;
@@ -101,10 +99,9 @@ namespace Views
                     precio = ddlPrecio.SelectedValue;
                 else
                     precio = "Todos los precios";
-                
 
-                repRepeater.DataSource = controller.Filtrar(marca, categoria, precio, precioText);
-                repRepeater.DataBind();
+
+                ListaArticulos = controller.Filtrar(marca, categoria, precio, precioText);
 
                 txtFiltroBasico.Text = "";
             }
@@ -122,8 +119,7 @@ namespace Views
                 ArticuloController controller = new ArticuloController();
 
                 txtFiltroBasico.Text = "";
-                repRepeater.DataSource = controller.ListarTodosLosArticulos();
-                repRepeater.DataBind();
+                ListaArticulos = controller.ListarTodosLosArticulos();
 
                 ddlCategoria.SelectedIndex = 0;
                 ddlMarca.SelectedIndex = 0;

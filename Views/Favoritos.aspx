@@ -6,22 +6,23 @@
 
     <style>
         .imagen {
-            height: 400px;
-            border: 1px solid #000;
+            object-fit: contain;
+            height: 250px;
+            width: 250px;
         }
     </style>
 
     <div class="row my-5">
         <div class="col bg-light">
-            <div class="row row-cols-1 row-cols-md-3 g-4 py-3">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 py-3">
                 <%Controllers.FavoritoController controller = new Controllers.FavoritoController();
                     foreach (Models.Articulo articulo in ListaArticulos)
                     {
                         if (controller.EsFavorito(articulo, (Models.User)Session["user"]))
                         {%>
                 <div class="col">
-                    <div class="card m-3" style="max-width: 400px">
-                        <div>
+                    <div class="card m-3" style="min-width: 255px">
+                        <div style="align-self: center">
                             <img src="<%: articulo.ImagenUrl %>" class="card-img-top imagen" alt="Imagen del artículo">
                         </div>
                         <div class="card-body">

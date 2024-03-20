@@ -95,7 +95,7 @@ namespace Views
                     ArticuloController controllerArticulo = new ArticuloController();
                     Articulo articulo = controllerArticulo.FiltrarPorId(id);
                     FavoritoController controller = new FavoritoController();
-                    controller.AgregarFavorito(articulo, (User)Session["user"]);
+                    controller.QuitarFavorito(articulo, (User)Session["user"]);
                     Response.Redirect("Favoritos.aspx", false);
                 }
             }

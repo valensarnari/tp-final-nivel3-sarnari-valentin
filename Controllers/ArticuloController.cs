@@ -105,11 +105,120 @@ namespace Controllers
             {
                 string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, IdMarca, M.Descripcion as Marca, IdCategoria, C.Descripcion as Categoria, ImagenUrl, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id ";
                 consulta += "and Nombre like '%" + nombre + "%'";
-                
+
                 acceso.SetConsulta(consulta);
                 acceso.EjecutarLectura();
 
-                while(acceso.Lector.Read())
+                while (acceso.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)acceso.Lector["Id"];
+                    aux.Codigo = (string)acceso.Lector["Codigo"];
+                    aux.Nombre = (string)acceso.Lector["Nombre"];
+                    aux.Descripcion = (string)acceso.Lector["Descripcion"];
+                    aux.Marca = new Marca();
+                    aux.Marca.Id = (int)acceso.Lector["IdMarca"];
+                    aux.Marca.Descripcion = (string)acceso.Lector["Marca"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Id = (int)acceso.Lector["IdCategoria"];
+                    aux.Categoria.Descripcion = (string)acceso.Lector["Categoria"];
+
+                    if (!(acceso.Lector["ImagenUrl"] is DBNull))
+                        aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
+
+                    aux.Precio = (Decimal)acceso.Lector["Precio"];
+
+                    listaArticulos.Add(aux);
+                }
+
+                return listaArticulos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                acceso.CerrarConexion();
+            }
+        }
+        public List<Articulo> Filtrar(string campo, string criterio, string filtro)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+            List<Articulo> listaArticulos = new List<Articulo>();
+
+            try
+            {
+                string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, IdMarca, M.Descripcion as Marca, IdCategoria, C.Descripcion as Categoria, ImagenUrl, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id ";
+
+                if (campo == "Precio")
+                {
+                    switch (criterio)
+                    {
+                        case "Mayor a":
+                            consulta += "and Precio > " + filtro;
+                            break;
+                        case "Menor a":
+                            consulta += "and Precio < " + filtro;
+                            break;
+                        default:
+                            consulta += "and Precio = " + filtro;
+                            break;
+                    }
+                }
+                else
+                {
+                    if (campo == "Código")
+                    {
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += "and Codigo like '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += "and Codigo like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += "and Codigo like '%" + filtro + "%'";
+                                break;
+                        }
+                    }
+                    else if (campo == "Nombre")
+                    {
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += "and Nombre like '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += "and Nombre like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += "and Nombre like '%" + filtro + "%'";
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (criterio)
+                        {
+                            case "Comienza con":
+                                consulta += "and A.Descripcion like '" + filtro + "%'";
+                                break;
+                            case "Termina con":
+                                consulta += "and A.Descripcion like '%" + filtro + "'";
+                                break;
+                            default:
+                                consulta += "and A.Descripcion like '%" + filtro + "%'";
+                                break;
+                        }
+                    }
+                }
+
+                acceso.SetConsulta(consulta);
+                acceso.EjecutarLectura();
+
+                while (acceso.Lector.Read())
                 {
                     Articulo aux = new Articulo();
                     aux.Id = (int)acceso.Lector["Id"];

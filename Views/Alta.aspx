@@ -15,7 +15,7 @@
 
     <div class="row">
         <%--COLUMNA IZQUIERDA--%>
-        <div class="col-5 mx-auto">
+        <div class="col-md-5 mx-auto">
             <div class="my-3">
                 <label for="txtId" class="form-label">Id</label>
                 <asp:TextBox ID="txtId" runat="server" CssClass="form-control"></asp:TextBox>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <%--COLUMNA DERECHA--%>
-        <div class="col-5 mx-auto">
+        <div class="col-md-5 mx-auto">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="my-3">

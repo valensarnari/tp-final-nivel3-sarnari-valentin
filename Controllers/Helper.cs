@@ -13,21 +13,32 @@ namespace Controllers
 {
     public static class Helper
     {
-        public static Image TransformarImagen(Image originalImage)
+        public static string ImagenExiste(string url)
         {
-            int largestDimension = Math.Max(originalImage.Height, originalImage.Width);
-            Size squareSize = new Size(largestDimension, largestDimension);
-            Bitmap squareImage = new Bitmap(squareSize.Width, squareSize.Height);
-            using (Graphics graphics = Graphics.FromImage(squareImage))
-            {
-                graphics.FillRectangle(Brushes.White, 0, 0, squareSize.Width, squareSize.Height);
-                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
-                graphics.DrawImage(originalImage, (squareSize.Width / 2) - (originalImage.Width / 2), (squareSize.Height / 2) - (originalImage.Height / 2), originalImage.Width, originalImage.Height);
+            request.Method = "HEAD";
+
+            try
+            {
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return url;
+                    }
+                    else
+                    {
+                        return "https://www.svgrepo.com/show/508699/landscape-placeholder.svg";
+                    }
+                }
             }
-            return squareImage;
+            catch (WebException) { return "https://www.svgrepo.com/show/508699/landscape-placeholder.svg"; }
+            catch
+            {
+                return "https://www.svgrepo.com/show/508699/landscape-placeholder.svg";
+            }
         }
         public static bool SesionActiva(object user)
         {

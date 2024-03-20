@@ -7,15 +7,15 @@
     <style>
         .imagen {
             border: 1px solid #000;
-            max-width: 350px;
+            max-width: 300px;
         }
     </style>
 
     <div class="row my-5">
-        <div class="col-4">
-            <asp:Image ID="imgArticulo" CssClass="img-fluid imagen" runat="server" />
+        <div class="col-xl-4">
+            <asp:Image ID="imgArticulo" CssClass="img-fluid imagen my-3" runat="server" />
         </div>
-        <div class="col">
+        <div class="col-xl">
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3">

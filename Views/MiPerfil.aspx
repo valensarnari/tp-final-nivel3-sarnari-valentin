@@ -13,7 +13,7 @@
 
     <div class="row my-5">
         <%--COLUMNA IZQUIERDA--%>
-        <div class="col-5 mx-auto">
+        <div class="col-sm-5 mx-auto">
             <div class="mb-3">
                 <label for="txtEmail" class="form-label">Email</label>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <%--COLUMNA DERECHA--%>
-        <div class="col-5 mx-auto">
+        <div class="col-sm-5 mx-auto">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <asp:Image CssClass="img-fluid mb-3 imagen" ID="imgMiPerfil" runat="server" ImageUrl="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" />
