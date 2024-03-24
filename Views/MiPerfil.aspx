@@ -18,13 +18,15 @@
                 <label for="txtEmail" class="form-label">Email</label>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="mb-3">
+            <div>
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ControlToValidate="txtNombre" Style="color: red;" runat="server" ErrorMessage="El campo Nombre es obligatorio *"></asp:RequiredFieldValidator>
             </div>
-            <div class="mb-3">
+            <div>
                 <label for="txtApellido" class="form-label">Apellido</label>
                 <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ControlToValidate="txtApellido" Style="color: red;" runat="server" ErrorMessage="El campo Apellido es obligatorio *"></asp:RequiredFieldValidator>
             </div>
             <div class="my-3">
                 <label class="form-label">Imagen de perfil</label>

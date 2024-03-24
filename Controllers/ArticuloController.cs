@@ -37,7 +37,7 @@ namespace Controllers
                     if (!(acceso.Lector["ImagenUrl"] is DBNull))
                         aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
 
-                    aux.Precio = (Decimal)acceso.Lector["Precio"];
+                    aux.Precio = Math.Truncate(100 * (Decimal)acceso.Lector["Precio"]) / 100;
 
                     lista.Add(aux);
                 }
@@ -80,7 +80,7 @@ namespace Controllers
                     if (!(acceso.Lector["ImagenUrl"] is DBNull))
                         articulo.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
 
-                    articulo.Precio = (Decimal)acceso.Lector["Precio"];
+                    articulo.Precio = Math.Truncate(100 * (Decimal)acceso.Lector["Precio"]) / 100;
 
                     return articulo;
                 }
@@ -126,7 +126,7 @@ namespace Controllers
                     if (!(acceso.Lector["ImagenUrl"] is DBNull))
                         aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
 
-                    aux.Precio = (Decimal)acceso.Lector["Precio"];
+                    aux.Precio = Math.Truncate(100 * (Decimal)acceso.Lector["Precio"]) / 100;
 
                     listaArticulos.Add(aux);
                 }
@@ -235,7 +235,7 @@ namespace Controllers
                     if (!(acceso.Lector["ImagenUrl"] is DBNull))
                         aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
 
-                    aux.Precio = (Decimal)acceso.Lector["Precio"];
+                    aux.Precio = Math.Truncate(100 * (Decimal)acceso.Lector["Precio"]) / 100;
 
                     listaArticulos.Add(aux);
                 }
@@ -314,7 +314,7 @@ namespace Controllers
                     if (!(acceso.Lector["ImagenUrl"] is DBNull))
                         aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
 
-                    aux.Precio = (Decimal)acceso.Lector["Precio"];
+                    aux.Precio = Math.Truncate(100 * (Decimal)acceso.Lector["Precio"]) / 100;
 
                     listaArticulos.Add(aux);
                 }

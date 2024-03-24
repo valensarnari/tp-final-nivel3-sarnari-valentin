@@ -23,6 +23,11 @@ namespace Views
                 UserController controller = new UserController();
                 User user = new User();
 
+                if (txtEmail.Text == "")
+                {
+                    throw new Exception("El campo Email no puede estar vacío.");
+                }
+
                 user.Email = txtEmail.Text;
                 user.Pass = txtPass.Text;
 
@@ -41,7 +46,7 @@ namespace Views
             }
             catch (Exception)
             {
-                Session.Add("error", "Ocurrió un error al intentar el Signup, vuelva a intentar.");
+                Session.Add("error", "Ocurrió un error al intentar el Signup, verifique bien los datos y vuelva a intentar.");
                 Response.Redirect("Error.aspx", false);
             }
         }

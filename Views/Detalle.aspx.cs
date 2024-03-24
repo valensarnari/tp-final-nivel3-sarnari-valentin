@@ -30,7 +30,7 @@ namespace Views
                         txtDescripcion.Text = articulo.Descripcion;
                         txtMarca.Text = articulo.Marca.Descripcion;
                         txtCategoria.Text = articulo.Categoria.Descripcion;
-                        txtPrecio.Text = articulo.Precio.ToString();
+                        txtPrecio.Text = "$" + articulo.Precio.ToString();
                         txtUrl.Text = articulo.ImagenUrl;
                         imgArticulo.ImageUrl = articulo.ImagenUrl;
 

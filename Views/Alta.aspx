@@ -20,29 +20,34 @@
                 <label for="txtId" class="form-label">Id</label>
                 <asp:TextBox ID="txtId" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="mb-3">
+            <div>
                 <label for="txtCodigo" class="form-label">Código</label>
                 <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ControlToValidate="txtCodigo" Style="color: red;" runat="server" ErrorMessage="El campo Código es obligatorio *"></asp:RequiredFieldValidator>
             </div>
-            <div class="mb-3">
+            <div>
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ControlToValidate="txtNombre" Style="color: red;" runat="server" ErrorMessage="El campo Nombre es obligatorio *"></asp:RequiredFieldValidator>
             </div>
-            <div class="mb-3">
+            <div>
                 <label for="txtDescripcion" class="form-label">Descripción</label>
                 <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ControlToValidate="txtDescripcion" Style="color: red;" runat="server" ErrorMessage="El campo Descripción es obligatorio *"></asp:RequiredFieldValidator>
             </div>
             <div class="mb-3">
                 <label for="ddlMarca" class="form-label">Marca</label>
                 <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
+
             </div>
             <div class="mb-3">
                 <label for="ddlCategoria" class="form-label">Categoría</label>
                 <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="mb-3">
-                <label for="txtPrecio" class="form-label">Precio</label>
+                <label for="txtPrecio" class="form-label">Precio (Formato: 0000,00 / 0)</label>
                 <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RegularExpressionValidator ControlToValidate="txtPrecio" runat="server" ErrorMessage="Revise que el formato sea el correcto *" Style="color: red;" ValidationExpression="^\d{1,9}(,\d{2})?$"></asp:RegularExpressionValidator>
             </div>
         </div>
         <%--COLUMNA DERECHA--%>
@@ -52,6 +57,7 @@
                     <div class="my-3">
                         <label for="txtImagenUrl" class="form-label">Url de imagen</label>
                         <asp:TextBox AutoPostBack="true" OnTextChanged="txtImagenUrl_TextChanged" ID="txtImagenUrl" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ControlToValidate="txtImagenUrl" Style="color: red;" runat="server" ErrorMessage="El campo Url de imagen es obligatorio *"></asp:RequiredFieldValidator>
                     </div>
                     <asp:Image CssClass="imagen" ID="imgArticulo" runat="server" ImageUrl="https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg" />
                 </ContentTemplate>

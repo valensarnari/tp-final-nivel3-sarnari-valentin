@@ -64,7 +64,7 @@
                                 <p class="card-text"><%: articulo.Descripcion %></p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><%: articulo.Precio %></li>
+                                <li class="list-group-item">$<%: articulo.Precio %></li>
                                 <li class="list-group-item">
                                     <a href="#" class="btn btn-outline-dark"><%: articulo.Marca.Descripcion %></a>
                                     <a href="#" class="btn btn-outline-dark"><%: articulo.Categoria.Descripcion %></a>

@@ -7,6 +7,6 @@
         <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     </div>
     <div class="mb-3">
-        <a href="Default.aspx" class="btn btn-danger">Volver al catálogo</a>
+        <a href="Default.aspx" class="btn btn-danger">Ir al catálogo</a>
     </div>
 </asp:Content>

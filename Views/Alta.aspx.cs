@@ -51,7 +51,7 @@ namespace Views
                         txtDescripcion.Text = articulo.Descripcion;
                         ddlMarca.SelectedValue = articulo.Marca.Id.ToString();
                         ddlCategoria.SelectedValue = articulo.Categoria.Id.ToString();
-                        txtPrecio.Text = articulo.Precio.ToString();
+                        txtPrecio.Text = (Math.Truncate(100 * articulo.Precio) / 100).ToString();
                         txtImagenUrl.Text = articulo.ImagenUrl;
                         imgArticulo.ImageUrl = articulo.ImagenUrl;
                     }
