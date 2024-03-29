@@ -45,9 +45,9 @@
                 <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="mb-3">
-                <label for="txtPrecio" class="form-label">Precio (Formato: 0000,00 / 0)</label>
+                <label for="txtPrecio" class="form-label">Precio (Formato: 1000.10 / 100)</label>
                 <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RegularExpressionValidator ControlToValidate="txtPrecio" runat="server" ErrorMessage="Revise que el formato sea el correcto *" Style="color: red;" ValidationExpression="^\d{1,9}(,\d{2})?$"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ControlToValidate="txtPrecio" runat="server" ErrorMessage="Revise que el formato sea el correcto *" Style="color: red;" ValidationExpression="^\d+(?:\.\d{0,2})?$"></asp:RegularExpressionValidator>
             </div>
         </div>
         <%--COLUMNA DERECHA--%>

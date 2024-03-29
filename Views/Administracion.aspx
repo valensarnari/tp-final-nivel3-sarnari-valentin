@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+    <div class="row d-flex align-items-end">
         <div class="col-md my-1">
             <div class="my-md-3">
                 <label for="ddlCampo" class="form-label">Campo</label>
@@ -18,11 +18,14 @@
         </div>
         <div class="col-md my-1">
             <div class="my-md-3">
-                <label for="txtFiltro" class="form-label">Filtro</label>
+                <%if (ddlCampo.SelectedIndex == 0) { %>
+                <asp:RegularExpressionValidator ControlToValidate="txtFiltro" runat="server" ErrorMessage="Revise que el formato sea el correcto *" Style="color: red;" ValidationExpression="^\d+(?:\.\d{0,2})?$"></asp:RegularExpressionValidator>
+                <%} %>
+                <label for="txtFiltro" class="form-label">Filtro (Formato Precio: 1000.10 / 100)</label>
                 <asp:TextBox ID="txtFiltro" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
-        <div class="col-md my-1 d-flex align-items-end">
+        <div class="col-md my-1">
             <div class="my-md-3">
                 <asp:Button ID="btnBuscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" runat="server" Text="Buscar" />
                 <asp:Button ID="btnReset" CssClass="btn btn-outline-primary" OnClick="btnReset_Click" runat="server" Text="Reset" />
